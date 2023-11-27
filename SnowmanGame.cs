@@ -22,7 +22,13 @@ namespace cSharpSnowman
         const int SNOWMAN_MAX_WRONG_GUESSES = 7;
 
         public static void Start()
-        {    
+        {   
+            /*
+            This method repeatedly prompts the user to enter either 'p' to play the Snowman game 
+            or 'q' to quit. It processes the user input, initiating the game, 
+            displaying a farewell message, or requesting valid input.
+            The loop continues until the user decides to play or exit.
+            */
 
             while (true)
             {
@@ -48,23 +54,31 @@ namespace cSharpSnowman
         
 
         static void PlaySnowmanGame()
-        /* Method to handle the main game logic */
-      
         {
+            /* 
+            This method initiates an instance of class WordGenerator, 
+            calls SelectWord mwthod to get a random word, and 
+            calls Snowman method to handle the main game logic.
+            */
+
             WordGenerator myWordGenerator = new WordGenerator();
             string selectedWord = SelectWord(myWordGenerator);
             Snowman(selectedWord);
         }
 
-        static string SelectWord(WordGenerator myWordGenerator)
-        /* Method to select a word within specified length constraints */
+        static string SelectWord(WordGenerator myWordGenerator) 
         {
+            /* 
+            This method generates a new selected word until it will satisfied specific length constraints.
+             */
+
             string selectedWord;
 
             do
             {
                 selectedWord = myWordGenerator.GetWord(PartOfSpeech.noun);
-            } while (selectedWord.Length < SNOWMAN_MIN_WORD_LENGTH || selectedWord.Length > SNOWMAN_MAX_WORD_LENGTH);
+            } 
+            while (selectedWord.Length < SNOWMAN_MIN_WORD_LENGTH || selectedWord.Length > SNOWMAN_MAX_WORD_LENGTH);
 
             return selectedWord;
         }
@@ -72,10 +86,9 @@ namespace cSharpSnowman
         static void Snowman(string snowmanWord)
         {
             /*
-            Complete the snowman function
-            replace "pass" below with your own code
-            It should print 'Congratulations, you win!'
-            If the player wins and, 'Sorry, you lose! The word was {snowmanWord}' if the player loses
+            This method contains main game logic.
+            It will print 'Congratulations, you win!', if the player wins
+            and, 'Sorry, you lose! The word was {snowmanWord}' if the player loses.
             */
             
             //Use for debuging
@@ -120,7 +133,7 @@ namespace cSharpSnowman
         static void PrintSnowmanGraphic(int numWrongGuesses)
         {
             /*
-            This function prints out the appropriate snowman image 
+            This method prints out the appropriate snowman image 
             depending on the number of wrong guesses the player has made.
             */
          
@@ -159,9 +172,8 @@ namespace cSharpSnowman
 
         static char GetLetterFromUser(Dictionary<char, bool> snowmanWordDict, List<char> wrongGuessesList)
         {
-            
             /*
-            This function takes the snowmanWordDict and the list of characters 
+            This method takes the snowmanWordDict and the list of characters 
             that have been guessed incorrectly (wrongGuessesList) as input.
             It asks for input from the user of a single character until 
             a valid character is provided and then returns this character.
@@ -210,7 +222,7 @@ namespace cSharpSnowman
         static Dictionary<char, bool> BuildWordDictionary(string snowmanWord)
         {
             /*
-            This function takes snowmanWord as input and returns 
+            This method takes snowmanWord as input and returns 
             a dictionary with a key-value pair for each letter in 
             snowmanWord where the key is the letter and the value is `false`.
             */
@@ -235,7 +247,7 @@ namespace cSharpSnowman
         static void PrintWordProgressString(string snowmanWord, Dictionary<char, bool> snowmanWordDict)
         {
             /*
-            This function takes the snowmanWord and snowmanWordDict as input.
+            This method takes the snowmanWord and snowmanWordDict as input.
             It prints an output_string that shows the correct letter guess placements 
             as well as the placements for the letters yet to be guessed.
             */
@@ -253,7 +265,7 @@ namespace cSharpSnowman
         static bool GetWordProgress(string snowmanWord, Dictionary<char, bool> snowmanWordDictionary)
         {
             /*
-            This function takes the snowmanWord and snowmanWordDict as input.
+            This method takes the snowmanWord and snowmanWordDict as input.
             It returns True if all the letters of the word have been guessed, and false otherwise.
             */
 
