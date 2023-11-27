@@ -15,6 +15,4 @@
 /Users/viktoriiazolotova/Developer/projects/cSharpSnowman/obj/Debug/net8.0/cSharpSnowman.csproj.AssemblyReference.cache
 /Users/viktoriiazolotova/Developer/projects/cSharpSnowman/bin/Debug/net8.0/RandomWordGenerator.dll
 /Users/viktoriiazolotova/Developer/projects/cSharpSnowman/obj/Debug/net8.0/cSharpSnowman.csproj.CopyComplete
-/Users/viktoriiazolotova/Developer/projects/cSharpSnowman/bin/Debug/net8.0/Castle.Core.dll
-/Users/viktoriiazolotova/Developer/projects/cSharpSnowman/bin/Debug/net8.0/Moq.dll
-/Users/viktoriiazolotova/Developer/projects/cSharpSnowman/bin/Debug/net8.0/nunit.framework.dll
+/Users/viktoriiazolotova/Developer/projects/cSharpSnowman/obj/Debug/net8.0/cSharpSnowman.sourcelink.json

@@ -9,67 +9,67 @@ namespace cSharpSnowman
     public class SnowmanGame
 
     {
-        public const string SNOWMAN_1 = "*   *   *  ";
-        public const string SNOWMAN_2 = " *   _ *   ";
-        public const string SNOWMAN_3 = "   _[_]_ * ";
-        public const string SNOWMAN_4 = " *  (\")    ";
-        public const string SNOWMAN_5 = "  \\( : )/ *";
-        public const string SNOWMAN_6 = "* (_ : _)  ";
-        public const string SNOWMAN_7 = "-----------";
+        const string SNOWMAN_1 = "*   *   *  ";
+        const string SNOWMAN_2 = " *   _ *   ";
+        const string SNOWMAN_3 = "   _[_]_ * ";
+        const string SNOWMAN_4 = " *  (\")    ";
+        const string SNOWMAN_5 = "  \\( : )/ *";
+        const string SNOWMAN_6 = "* (_ : _)  ";
+        const string SNOWMAN_7 = "-----------";
 
-        public const int SNOWMAN_MIN_WORD_LENGTH = 5;
-        public const int SNOWMAN_MAX_WORD_LENGTH = 8;
-        public const int SNOWMAN_MAX_WRONG_GUESSES = 7;
+        const int SNOWMAN_MIN_WORD_LENGTH = 5;
+        const int SNOWMAN_MAX_WORD_LENGTH = 8;
+        const int SNOWMAN_MAX_WRONG_GUESSES = 7;
 
         public static void Start()
         {    
-            // Console.WriteLine("Please enter p to play or t to test => ");
-            Console.WriteLine("Please enter p to play: ");
-            string userInput = Console.ReadLine().ToLower();
 
-            if(userInput== "p")
+            while (true)
             {
-                PlaySnowmanGame();
+                Console.WriteLine("Please enter 'p' to play or 'q' to quit: ");
+                string? userInput = Console.ReadLine()!.ToLower();
+        
+                if(userInput== "p")
+                {   
+                    PlaySnowmanGame(); 
+                  
+                }
+                else if(userInput== "q")
+                {
+                    Console.WriteLine("Exiting the program. Goodbye!");
+                    break;
+                }
+                else 
+                {   
+                    Console.WriteLine("Input is invalid. Try again, please.");           
+                }
             }
-            // else if(userInput == "t")
-            // {
-            //     Console.WriteLine("This should be testing....");
-            //     SnowmanTests.PrintsSuccessMessageIfAllLettersGuessed();
-
-            // }
-            // else
-            // {
-            //     Console.WriteLine("Invalid input. Please enter either p or t."); 
-            // }
-            
         }
+        
 
-        public static void PlaySnowmanGame()
-        /*
-        Method to handle the main game logic
-        */
+        static void PlaySnowmanGame()
+        /* Method to handle the main game logic */
+      
         {
             WordGenerator myWordGenerator = new WordGenerator();
             string selectedWord = SelectWord(myWordGenerator);
             Snowman(selectedWord);
         }
 
-        public static string SelectWord(WordGenerator wordGenerator)
-        /*
-        Method to select a word within specified length constraints
-        */
+        static string SelectWord(WordGenerator myWordGenerator)
+        /* Method to select a word within specified length constraints */
         {
             string selectedWord;
 
             do
             {
-                selectedWord = wordGenerator.GetWord(PartOfSpeech.noun);
+                selectedWord = myWordGenerator.GetWord(PartOfSpeech.noun);
             } while (selectedWord.Length < SNOWMAN_MIN_WORD_LENGTH || selectedWord.Length > SNOWMAN_MAX_WORD_LENGTH);
 
             return selectedWord;
         }
 
-        public static void Snowman(string snowmanWord)
+        static void Snowman(string snowmanWord)
         {
             /*
             Complete the snowman function
@@ -77,7 +77,9 @@ namespace cSharpSnowman
             It should print 'Congratulations, you win!'
             If the player wins and, 'Sorry, you lose! The word was {snowmanWord}' if the player loses
             */
-            Console.WriteLine("\nDebug info: "+ snowmanWord);
+            
+            //Use for debuging
+            //Console.WriteLine("\nDebug info: "+ snowmanWord);
 
             Dictionary<char, bool> snowmanWordDict = BuildWordDictionary(snowmanWord);
             List<char> wrongGuessesList = new List<char>();
@@ -105,17 +107,17 @@ namespace cSharpSnowman
 
                 if (GetWordProgress(snowmanWord, snowmanWordDict))
                 {
-                    Console.WriteLine("Congratulations, you win!");
+                    Console.WriteLine("Congratulations, you win!\n");
                     continueGuess = false;
                 }
                 else if(wrongGuessesList.Count==SNOWMAN_MAX_WRONG_GUESSES)
                 {
-                    Console.WriteLine($"Sorry, you lose! The word was " + snowmanWord);
+                    Console.WriteLine($"Sorry, you lose! The word was " + snowmanWord +"\n");
                 }
             }
         }
 
-        public static void PrintSnowmanGraphic(int numWrongGuesses)
+        static void PrintSnowmanGraphic(int numWrongGuesses)
         {
             /*
             This function prints out the appropriate snowman image 
@@ -155,7 +157,7 @@ namespace cSharpSnowman
             }
         }
 
-        public static char GetLetterFromUser(Dictionary<char, bool> snowmanWordDict, List<char> wrongGuessesList)
+        static char GetLetterFromUser(Dictionary<char, bool> snowmanWordDict, List<char> wrongGuessesList)
         {
             
             /*
@@ -172,7 +174,7 @@ namespace cSharpSnowman
             while (!validInput)
             {
                 Console.WriteLine("Guess a letter: ");
-                string userInputString = Console.ReadLine().ToLower();
+                string? userInputString = Console.ReadLine()!.ToLower();
 
                 if (userInputString.Length != 1)
                 {
@@ -205,7 +207,7 @@ namespace cSharpSnowman
             return letter;
         }
 
-        public static Dictionary<char, bool> BuildWordDictionary(string snowmanWord)
+        static Dictionary<char, bool> BuildWordDictionary(string snowmanWord)
         {
             /*
             This function takes snowmanWord as input and returns 
@@ -222,7 +224,7 @@ namespace cSharpSnowman
             return snowmanWordDictionary;
         }
 
-        public static void PrintDictionary(Dictionary<char, bool> dictionary)
+        static void PrintDictionary(Dictionary<char, bool> dictionary)
         {
             foreach (var kvp in dictionary)
             {
@@ -230,7 +232,7 @@ namespace cSharpSnowman
             }
         }
 
-        public static void PrintWordProgressString(string snowmanWord, Dictionary<char, bool> snowmanWordDict)
+        static void PrintWordProgressString(string snowmanWord, Dictionary<char, bool> snowmanWordDict)
         {
             /*
             This function takes the snowmanWord and snowmanWordDict as input.
@@ -248,7 +250,7 @@ namespace cSharpSnowman
             Console.WriteLine(outputString);
         }
 
-        public static bool GetWordProgress(string snowmanWord, Dictionary<char, bool> snowmanWordDictionary)
+        static bool GetWordProgress(string snowmanWord, Dictionary<char, bool> snowmanWordDictionary)
         {
             /*
             This function takes the snowmanWord and snowmanWordDict as input.

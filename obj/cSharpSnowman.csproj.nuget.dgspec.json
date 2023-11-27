@@ -41,14 +41,6 @@
             "CrypticWizard.RandomWordGenerator": {
               "target": "Package",
               "version": "[0.9.5, )"
-            },
-            "Moq": {
-              "target": "Package",
-              "version": "[4.16.1, )"
-            },
-            "NUnit": {
-              "target": "Package",
-              "version": "[3.13.2, )"
             }
           },
           "imports": [
