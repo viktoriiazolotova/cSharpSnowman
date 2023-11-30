@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cSharpSnowman")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db7adbedf4d3001a45d09b92c392d9e4a9e51b18")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2c5714d5b3e5197ce07eaa71fb3a65c78264d8db")]
 [assembly: System.Reflection.AssemblyProductAttribute("cSharpSnowman")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cSharpSnowman")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

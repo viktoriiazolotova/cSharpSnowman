@@ -9,7 +9,7 @@ namespace cSharpSnowman
     public class SnowmanGame
 
     {
-        const string SNOWMAN_1 = "*   *   *  ";
+        public const string SNOWMAN_1 = "*   *   *  ";
         const string SNOWMAN_2 = " *   _ *   ";
         const string SNOWMAN_3 = "   _[_]_ * ";
         const string SNOWMAN_4 = " *  (\")    ";
@@ -22,7 +22,7 @@ namespace cSharpSnowman
         const int SNOWMAN_MAX_WRONG_GUESSES = 7;
 
         public static void Start()
-        {   
+        {
             /*
             This method repeatedly prompts the user to enter either 'p' to play the Snowman game 
             or 'q' to quit. It processes the user input, initiating the game, 
@@ -34,24 +34,24 @@ namespace cSharpSnowman
             {
                 Console.WriteLine("Please enter 'p' to play or 'q' to quit: ");
                 string? userInput = Console.ReadLine()!.ToLower();
-        
-                if(userInput== "p")
-                {   
-                    PlaySnowmanGame(); 
-                  
+
+                if (userInput == "p")
+                {
+                    PlaySnowmanGame();
+
                 }
-                else if(userInput== "q")
+                else if (userInput == "q")
                 {
                     Console.WriteLine("Exiting the program. Goodbye!");
                     break;
                 }
-                else 
-                {   
-                    Console.WriteLine("Input is invalid. Try again, please.");           
+                else
+                {
+                    Console.WriteLine("Input is invalid. Try again, please.");
                 }
             }
         }
-        
+
 
         static void PlaySnowmanGame()
         {
@@ -66,7 +66,7 @@ namespace cSharpSnowman
             Snowman(selectedWord);
         }
 
-        static string SelectWord(WordGenerator myWordGenerator) 
+        static string SelectWord(WordGenerator myWordGenerator)
         {
             /* 
             This method generates a new selected word until it will satisfied specific length constraints.
@@ -77,7 +77,7 @@ namespace cSharpSnowman
             do
             {
                 selectedWord = myWordGenerator.GetWord(PartOfSpeech.noun);
-            } 
+            }
             while (selectedWord.Length < SNOWMAN_MIN_WORD_LENGTH || selectedWord.Length > SNOWMAN_MAX_WORD_LENGTH);
 
             return selectedWord;
@@ -90,25 +90,26 @@ namespace cSharpSnowman
             It will print 'Congratulations, you win!', if the player wins
             and, 'Sorry, you lose! The word was {snowmanWord}' if the player loses.
             */
-            
+
             //Use for debuging
             //Console.WriteLine("\nDebug info: "+ snowmanWord);
 
             Dictionary<char, bool> snowmanWordDict = BuildWordDictionary(snowmanWord);
-            List<char> wrongGuessesList = new List<char>();
-      
+            var wrongGuessesList = new List<char>();
+
             bool continueGuess = true;
 
-            while(wrongGuessesList.Count<SNOWMAN_MAX_WRONG_GUESSES && continueGuess)
+            while (wrongGuessesList.Count < SNOWMAN_MAX_WRONG_GUESSES && continueGuess)
             {
-               char userInputLetter = GetLetterFromUser(snowmanWordDict, wrongGuessesList);
-               
+                char userInputLetter = GetLetterFromUser(snowmanWordDict, wrongGuessesList);
+
                 if (snowmanWord.Contains(userInputLetter))
                 {
-                    snowmanWordDict[userInputLetter]=true;
+                    snowmanWordDict[userInputLetter] = true;
                     Console.WriteLine("You guessed a letter that's in the word!");
                 }
-                else {
+                else
+                {
                     wrongGuessesList.Add(userInputLetter);
                     Console.WriteLine("The letter is not in the word");
                 }
@@ -123,9 +124,9 @@ namespace cSharpSnowman
                     Console.WriteLine("Congratulations, you win!\n");
                     continueGuess = false;
                 }
-                else if(wrongGuessesList.Count==SNOWMAN_MAX_WRONG_GUESSES)
+                else if (wrongGuessesList.Count == SNOWMAN_MAX_WRONG_GUESSES)
                 {
-                    Console.WriteLine($"Sorry, you lose! The word was " + snowmanWord +"\n");
+                    Console.WriteLine($"Sorry, you lose! The word was " + snowmanWord + "\n");
                 }
             }
         }
@@ -136,7 +137,7 @@ namespace cSharpSnowman
             This method prints out the appropriate snowman image 
             depending on the number of wrong guesses the player has made.
             */
-         
+
             for (int i = 1; i < numWrongGuesses + 1; i++)
             {
                 if (i == 1)
@@ -181,18 +182,17 @@ namespace cSharpSnowman
 
             bool validInput = false;
             char letter = '\0';
-            // char? letter = null;
 
             while (!validInput)
             {
-                Console.WriteLine("Guess a letter: ");
+                Console.WriteLine("Guess a letter or press Ctrl + C to exit the game: ");
                 string? userInputString = Console.ReadLine()!.ToLower();
 
                 if (userInputString.Length != 1)
                 {
                     Console.WriteLine("You can only input one letter at a time!");
                 }
-                else 
+                else
                 {
                     letter = userInputString[0];
 
@@ -226,7 +226,7 @@ namespace cSharpSnowman
             a dictionary with a key-value pair for each letter in 
             snowmanWord where the key is the letter and the value is `false`.
             */
-          
+
             Dictionary<char, bool> snowmanWordDictionary = new Dictionary<char, bool>();
 
             foreach (char letter in snowmanWord)

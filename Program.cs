@@ -8,6 +8,7 @@ namespace cSharpSnowman
         static void Main(string[] args)
         {
             SnowmanGame.Start();
+
         }
     }
 }
