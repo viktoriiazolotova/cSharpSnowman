@@ -1,6 +1,6 @@
-# Snowman Game
+# Snowman Game ☃️ 
 
-***Snowman Game*** ☃️ is a simple console-based word guessing game built with C# and .NET.
+***Snowman Game*** is a simple console-based word guessing game built with C# and .NET.
 
 ## How to Play
 
